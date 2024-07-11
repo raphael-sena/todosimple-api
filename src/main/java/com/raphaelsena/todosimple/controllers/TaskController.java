@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.List;
 
 import com.raphaelsena.todosimple.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.raphaelsena.todosimple.models.Task;
 import com.raphaelsena.todosimple.services.TaskService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/task")

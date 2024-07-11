@@ -2,13 +2,13 @@ package com.raphaelsena.todosimple.controllers;
 
 import com.raphaelsena.todosimple.models.User;
 import com.raphaelsena.todosimple.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController

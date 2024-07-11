@@ -1,7 +1,6 @@
 package com.raphaelsena.todosimple.exceptions;
 
 import com.raphaelsena.todosimple.services.exceptions.DataBindingViolationException;
-import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.ObjectNotFoundException;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import javax.validation.ConstraintViolationException;
 
 @Slf4j(topic = "GLOBAL_EXCEPTION_HANDLER")
 @RestControllerAdvice
