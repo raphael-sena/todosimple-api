@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.raphaelsena.todosimple.models.dto.UserCreateDTO;
+import com.raphaelsena.todosimple.models.dto.UserUpdateDTO;
 import com.raphaelsena.todosimple.models.enums.ProfileEnum;
 import com.raphaelsena.todosimple.security.UserSpringSecurity;
 import com.raphaelsena.todosimple.services.exceptions.AuthorizationException;
@@ -19,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.raphaelsena.todosimple.repositories.UserRepository;
 import com.raphaelsena.todosimple.models.User;
 import com.raphaelsena.todosimple.repositories.TaskRepository;
+
+import javax.validation.Valid;
 
 @Service
 public class UserService {
@@ -85,6 +89,20 @@ public class UserService {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public User fromDTO(@Valid UserCreateDTO obj) {
+        User user = new User();
+        user.setUsername(obj.getUsername());
+        user.setPassword(obj.getPassword());
+        return user;
+    }
+
+    public User fromDTO(@Valid UserUpdateDTO obj) {
+        User user = new User();
+        user.setId(obj.getId());
+        user.setPassword(obj.getPassword());
+        return user;
     }
 
 }
