@@ -1,5 +1,6 @@
 package com.raphaelsena.todosimple.configs;
 
+import com.raphaelsena.todosimple.security.JWTAuthenticationFilter;
 import com.raphaelsena.todosimple.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -54,9 +55,16 @@ public class SecurityConfig {
         this.authenticationManager = authenticationManagerBuilder.build();
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
-                .antMatchers(PUBLIC_MATCHERS).permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST)
+                .permitAll()
+                .antMatchers(PUBLIC_MATCHERS)
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .authenticationManager(authenticationManager);
+
+        http.addFilter(new JWTAuthenticationFilter(this.authenticationManager, jwtUtil));
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
