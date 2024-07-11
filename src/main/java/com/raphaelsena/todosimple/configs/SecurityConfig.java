@@ -1,6 +1,7 @@
 package com.raphaelsena.todosimple.configs;
 
 import com.raphaelsena.todosimple.security.JWTAuthenticationFilter;
+import com.raphaelsena.todosimple.security.JWTAuthorizationFilter;
 import com.raphaelsena.todosimple.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -65,6 +66,7 @@ public class SecurityConfig {
                 .authenticationManager(authenticationManager);
 
         http.addFilter(new JWTAuthenticationFilter(this.authenticationManager, jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(this.authenticationManager, jwtUtil, this.userDetailsService));
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
